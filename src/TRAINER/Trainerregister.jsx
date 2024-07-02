@@ -4,7 +4,7 @@ import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 
 
-const Internregister = () => {
+const Trainerregister = () => {
   const[intern,setIntern]=useState([])
  const[refresh,setRefresh]=useState(true)
 
@@ -16,7 +16,7 @@ const Internregister = () => {
     let handleSubmit= async (e) =>{
       e.preventDefault()
       try{
-        let response = await axios.post('http://localhost:4000/auth/internRegister',intern)
+        let response = await axios.post('http://localhost:4000/auth/trainerRegister',intern)
         setRefresh(!refresh)
         toast.success('Intern registered successfully')
         }
@@ -76,4 +76,4 @@ const Internregister = () => {
   );
 }
 
-export default Internregister;
+export default Trainerregister

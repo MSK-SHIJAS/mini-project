@@ -1,17 +1,65 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-// import App from './App';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Login from './Login';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import AdminNav from './ADMIN/AdminNav';
+import Course from './ADMIN/Course';
+import AdminDash from './ADMIN/AdminDash';
+import Navbars from './Navbars';
+import Trainer from './ADMIN/Trainer';
+import Trainercourse from './ADMIN/Trainercourse';
+import Trainerfees from './ADMIN/Trainerfees';
+import Trainersyllabus from './ADMIN/Trainersyllabus';
+import Trainernav from './TRAINER/Trainernav';
+import Trainerdash from './TRAINER/Trainerdash';
+import Trainerregister from './TRAINER/Trainerregister';
+import Trainerinterns from './TRAINER/Trainerinterns';
+import Trainertask from './TRAINER/Trainertask';
+import Interntask from './INTERN/Interntask';
 import Internregister from './INTERN/Internregister';
+import 'react-toastify/dist/ReactToastify.css';
+import Internnav from './INTERN/Internav';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* <Internregister /> */}
-    <Login/>
+
+
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Navbars />}>
+          <Route index element={<App />} />
+          <Route path='login' element={<Login />} />
+          <Route path='internregister' element={<Internregister />} />
+          <Route path='trainerregister' element={<Trainerregister />} />
+        </Route>
+
+        <Route path='/admin' element={<AdminNav/>}>
+          <Route index element={<Course />} />
+          <Route path='adminstatus' element={<Trainer />} />
+          <Route path='admincourse' element={<Trainercourse />} />
+          <Route path='adminfees' element={<Trainerfees />} />
+          <Route path='adminsyllabus' element={<Trainersyllabus />} />
+
+        </Route>
+
+        <Route path='/trainer' element={<Trainernav />}>
+        <Route index element={<Trainerinterns />} />
+        <Route path='trainertask' element={<Trainertask />}/>
+        </Route>
+
+        <Route path='/intern' element={<Internnav />}>
+        <Route index element={<Interntask />} />
+        </Route>
+       
+
+      </Routes>
+    </BrowserRouter> 
+
   </React.StrictMode>
 );
 
