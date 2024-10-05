@@ -15,6 +15,7 @@ import answer from './Roots/Internroutes.js'; // Import the new routes
 import BlogRegister from './Roots/Blog.js'; // Import the new routes
 import BlogLogin from './Roots/Blog.js'; // Import the new routes
 import Blogcreate from './Roots/Blog.js'; // Import the new routes
+import Poll from './Roots/Poll.js';
 
 
 const app = express();
@@ -44,6 +45,10 @@ app.use('/answer',answer); // Use the new routes
 app.use('/BlogRegister',BlogRegister)
 app.use('/BlogLogin',BlogLogin)
 app.use('/Blogpost',Blogcreate)
+
+
+
+app.use('/Poll',Poll)
 
 
 app.listen(4000, () => {
