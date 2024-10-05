@@ -9,7 +9,7 @@ const Trainernav = () => {
     <div>
     <Navbar expand="lg" className="bg-body-tertiary">
 <Container>
-  <Navbar.Brand href="#">WELCOME Trainer</Navbar.Brand>
+  <Navbar.Brand href="#">WELCOME TRAINER</Navbar.Brand>
 </Container>
 </Navbar>
 <div className='d-flex'>

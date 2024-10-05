@@ -1,56 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Table, Button, Modal } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const Trainertask = () => {
+  const [tasks, setTasks] = useState([]);
   const [showInterns, setShowInterns] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
 
-  const tasks = [
-    {
-      id: 1,
-      name: 'Task 1',
-      deadline: '2024-07-01',
-      document: 'document1.pdf',
-      notes: 'Complete the assignment on time.',
-      link: 'https://example.com/document1',
-      interns: [
-        {
-          name: 'John Doe',
-          course: 'Web Development',
-          answer: 'Answer 1',
-          mark: '90',
-        },
-        {
-          name: 'Jane Smith',
-          course: 'Data Science',
-          answer: 'Answer 2',
-          mark: '85',
-        },
-      ],
-    },
-    {
-      id: 2,
-      name: 'Task 2',
-      deadline: '2024-07-05',
-      document: 'document2.pdf',
-      notes: 'Review the document carefully.',
-      link: 'https://example.com/document2',
-      interns: [
-        {
-          name: 'Mary Johnson',
-          course: 'UX Design',
-          answer: 'Answer 3',
-          mark: '95',
-        },
-        {
-          name: 'Alex Brown',
-          course: 'Backend Development',
-          answer: 'Answer 4',
-          mark: '88',
-        },
-      ],
-    },
-  ];
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const response = await axios.get('http://localhost:4000/task/task');
+        setTasks(response.data);
+      } catch (error) {
+        console.error('Error fetching tasks:', error);
+      }
+    };
+
+    fetchTasks();
+  }, []);
 
   const handleViewInterns = (taskId) => {
     setSelectedTask(taskId);
@@ -77,9 +46,13 @@ const Trainertask = () => {
         <tbody>
           {tasks.map((task, index) => (
             <tr key={index}>
-              <td>{task.name}</td>
+              <td>{task.question}</td>
               <td>{task.deadline}</td>
-              <td>{task.document}</td>
+              <td>
+                <a href={`http://localhost:4000/uploads/${task.documentPath}`} target="_blank" rel="noopener noreferrer">
+                  View Document
+                </a>
+              </td>
               <td>{task.notes}</td>
               <td>
                 <a href={task.link} target="_blank" rel="noopener noreferrer">
@@ -88,9 +61,11 @@ const Trainertask = () => {
               </td>
               {!showInterns && (
                 <td>
-                  <Button variant="info" onClick={() => handleViewInterns(task.id)}>
-                    View Interns
+                  <Link to={`/trainer/trainerviewtask/${task._id}`}>
+                  <Button variant="info">
+                    View Answer
                   </Button>
+                  </Link>
                 </td>
               )}
             </tr>

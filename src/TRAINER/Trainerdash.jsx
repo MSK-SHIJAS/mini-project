@@ -5,7 +5,7 @@ const Trainerdash = () => {
   return (
     <div>
       <Nav defaultActiveKey="/home" className="flex-column">
-      <Nav.Link href="/trainer">INTERNS</Nav.Link>
+      <Nav.Link href="/trainer/viewintern">INTERNS</Nav.Link>
       <Nav.Link href="/trainer/trainertask">TASK</Nav.Link>
     </Nav>
     </div>

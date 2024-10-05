@@ -3,27 +3,59 @@ import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 
-
 const Trainerregister = () => {
-  const[intern,setIntern]=useState([])
- const[refresh,setRefresh]=useState(true)
 
-    let handleChange=(event)=>{
-      setIntern({...intern,[event.target.name]:event.target.value})
+  const [trainer, setTrainer] = useState({
+    name: '',
+    date: '',
+    course: '',
+    contact: '',
+    email: '',
+    username: '',
+    password: '',
+    photo: null
+  });
+  const [refresh, setRefresh] = useState(true);
+
+  const handleChange = (event) => {
+    const { name, value, files } = event.target;
+    
+    if (name === 'photo') {
+      setTrainer({ ...trainer, [name]: files[0] });  // Store the file object for photo
+    } else {
+      setTrainer({ ...trainer, [name]: value });
     }
-    console.log(intern);
+  };
 
-    let handleSubmit= async (e) =>{
-      e.preventDefault()
-      try{
-        let response = await axios.post('http://localhost:4000/auth/trainerRegister',intern)
-        setRefresh(!refresh)
-        toast.success('Intern registered successfully')
+  const handleSubmit = async (e) => {
+
+    const formData = new FormData();
+    
+    // Append each field to formData
+    formData.append('name', trainer.name);
+    formData.append('date', trainer.date);
+    formData.append('course', trainer.course);
+    formData.append('username', trainer.username);
+    formData.append('password', trainer.password);
+
+    // Append the photo file
+    if (trainer.photo) {
+      formData.append('photo', trainer.photo);
+    }
+
+    try {
+      let response = await axios.post('http://localhost:4000/auth/trainerRegister', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
         }
-        catch(e){
-        toast.error(e.response.intern)
-      }
+      });
+      setRefresh(!refresh);
+      toast.success('Trainer registered successfully');
+    } catch (e) {
+      toast.error(e.response.data.message || 'Error registering intern');
     }
+  };
+
     
   return (
     <div className='w-100'>
@@ -52,9 +84,9 @@ const Trainerregister = () => {
               <Form.Group controlId="formCourse" className="mb-3">
                 <Form.Label>Select Course</Form.Label>
                 <Form.Control as="select" name='course' onChange={handleChange}>
-                  <option>Course 1</option>
-                  <option>Course 2</option>
-                  <option>Course 3</option>
+                  <option>MERN</option>
+                  <option>PYTHON</option>
+                  <option>MEAN</option>
                 </Form.Control>
               </Form.Group>
               <Form.Group controlId="formUsername" className="mb-3">
