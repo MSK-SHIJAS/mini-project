@@ -29,11 +29,14 @@ import ViewIntern from './TRAINER/ViewIntern';
 import BlogLogin from './MACHINE TEST/BlogLogin';
 import BlogRegister from './MACHINE TEST/BlogRegister';
 import Blog from './MACHINE TEST/Blog';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import ViewTrainer from './INTERN/ViewTrainer';
 import PollLogin from './MACHINE TEST/PollLogin';
 import PollHome from './MACHINE TEST/PollHome';
 import PollView from './MACHINE TEST/PollView';
+import TaskList from './MACHINE TEST/TaskList';
+import Employe from './MACHINE TEST/Employe';
 
 
 
@@ -44,7 +47,7 @@ root.render(
 
     <BrowserRouter>
       <Routes>
-        {/* <Route path='/' element={<Navbars />}>
+         {/* <Route path='/' element={<Navbars />}>
           <Route index element={<App />} />
           <Route path='login' element={<Login />} />
           <Route path='internregister' element={<Internregister />} />
@@ -70,15 +73,17 @@ root.render(
         <Route index element={<Interntask />} />
         <Route path='internquestion/:id' element={<InternQuestion />}/>
         <Route path='viewtrainer' element={<ViewTrainer />}/>
-        </Route> */}
-
+        </Route>  */}
 
         {/* MACHINE TEST */}
-        <Route path='/' element={<PollLogin />}/>
+        {/* <Route path='/' element={<PollLogin />}/>
         <Route path='pollhome' element={<PollHome />}/>
         <Route path='pollview' element={<PollView />}/>
-        {/* <Route path='/login' element={<BlogLogin />}/>
-        <Route path='/blog' element={<Blog />}/> */}
+        <Route path='/login' element={<BlogLogin />}/>
+        <Route path='/blog' element={<Blog />}/>
+
+       <Route path='tasklist' element={<TaskList />}/> */}
+       <Route path='/' element={<Employe />}/> */}
 
        
 
