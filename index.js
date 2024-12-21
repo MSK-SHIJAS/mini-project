@@ -16,6 +16,9 @@ import BlogRegister from './Roots/Blog.js'; // Import the new routes
 import BlogLogin from './Roots/Blog.js'; // Import the new routes
 import Blogcreate from './Roots/Blog.js'; // Import the new routes
 import Poll from './Roots/Poll.js';
+import Tasklist from './Roots/Taklist.js';
+import Book from './Roots/Books.js';
+import Employee from './Roots/Employe.js';
 
 
 const app = express();
@@ -47,9 +50,12 @@ app.use('/BlogLogin',BlogLogin)
 app.use('/Blogpost',Blogcreate)
 
 
-
 app.use('/Poll',Poll)
 
+app.use('/tasklist',Tasklist)
+app.use('/books',Book)
+
+app.use('/employee',Employee)
 
 app.listen(4000, () => {
   console.log('running');
